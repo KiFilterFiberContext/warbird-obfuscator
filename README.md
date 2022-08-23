@@ -1,7 +1,5 @@
 # WarBird Obfuscate
-> An analysis of WarBird obfuscation in the MSVC compiler
-
-*Disclaimer*: This repository is not complete and will be continuously updated.
+An analysis of WarBird obfuscation in the MSVC compiler
 
 ## Background
 WarBird is an obfuscation framework used by Microsoft in their DRM technology.  It supports multiple forms of obfuscation including code packing and virtual-machine obfuscation.
@@ -31,6 +29,9 @@ void __fastcall Enclave::CObfuscationEnclave::Initialize(Enclave::CObfuscationEn
 ```powershell
 cl /Zi .\example\main.cpp /link /wbrddll:warbird-obfuscate.dll /wbrdcfg:wbrd.cfg
 ```
+
+## References
+- [Warbird Runtime Reversed Engineered Code](https://github.com/KiFilterFiberContext/microsoft-warbird/)
 
 ## Compiler Info
 - `cl.exe: aa9374078fcdce84bca034fd1bb395fdd3825614656e898017435ced17ff1061`
