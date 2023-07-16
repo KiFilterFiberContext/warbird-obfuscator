@@ -1,5 +1,5 @@
 # WarBird Obfuscate
-An analysis of WarBird obfuscation in the MSVC compiler
+A brief overview of WarBird obfuscation in the MSVC compiler
 
 ## Background
 WarBird is an obfuscation framework used by Microsoft in their DRM technology.  It supports multiple forms of obfuscation including code packing and virtual-machine obfuscation.
@@ -9,7 +9,14 @@ WarBird functionality is also exposed through the `NtQuerySystemInformation` sys
 
 Given its prevalent usage by Microsoft, one should be curious enough to investigate whether any references are found in the MSVC compiler.  String references can be discovered in the backend compiler (`c2.dll`) and linker (`link.exe`) images. 
 
-In `ProcessLinkerSwitches`, there are four linker flags related to WarBird: `/wbrdcfg`, `/wbrddll`, `/wbrdlog`, and `/wbrdschema` with options to test encryption or to provide a log schema.
+In `ProcessLinkerSwitches`, there are several linker flags related to Warbird that are used internally:
+- `/wbrdcfg`
+- `/wbrddll`
+- `/wbrdlog`
+- `/wbrdreporterrors`
+- `/wbrdschema`
+- `/wbrdsummary`
+- `/wbrdtestencrypt`
 
 If the configuration and dll WarBird linker flags are supplied during the building process of the executable then it will call `Warbird::CWarbirdServer::CreateObfuscator2`.  The routine will load the DLL supplied by the flag and call an exported function named `CreateObfuscator2` with the linker flag arguments, the machine type and the obfuscator base.
 
